@@ -30,7 +30,7 @@ class MultiQuantityField(models.Field):
         self.dim = kwargs.pop('dim', 1)
         self.units = kwargs.pop('units', None)
 
-        if not isinstance(self.dim, (int, long)) or (self.dim < 1):
+        if not isinstance(self.dim, int) or (self.dim < 1):
             raise ValidationError(self.error_messages['invalid_dim'])
 
         if not is_iterable(self.units):
