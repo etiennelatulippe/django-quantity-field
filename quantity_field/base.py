@@ -1,5 +1,6 @@
 # coding: utf-8
 
+from functools import reduce
 from django.utils.encoding import python_2_unicode_compatible
 from quantity_field import ureg
 
