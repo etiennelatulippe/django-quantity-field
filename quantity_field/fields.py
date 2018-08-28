@@ -39,7 +39,7 @@ class MultiQuantityField(models.Field):
         if any(not isinstance(u, (ureg.Unit, str)) for u in self.units):
             raise ValidationError(self.error_messages['invalid_units'])
 
-        self.units = map(lambda u: isinstance(u, str) and ureg(u) or u, self.units)
+        self.units = list(map(lambda u: isinstance(u, str) and ureg(u) or u, self.units))
 
         if any(u.dimensionality != self.units[0].dimensionality for u in self.units):
             raise ValidationError(self.error_messages['different_units'])
