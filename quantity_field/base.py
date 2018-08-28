@@ -23,7 +23,7 @@ class MultiQuantity(ureg.Quantity):
     SEPARATOR = '*'     # Used for serialization and deserialization
 
     def __init__(self, *args, **kwargs):
-        super(MultiQuantity, self).__init__(*args, **kwargs)
+        super().__init__()
         self._values = [self]
 
     def __str__(self):
