@@ -45,7 +45,7 @@ class MultiQuantityField(models.Field):
             raise ValidationError(self.error_messages['different_units'])
 
         kwargs['max_length'] = 255
-        super().__init__()
+        super().__init__(*args, **kwargs)
 
     def get_internal_type(self):
         return 'CharField'
@@ -55,7 +55,6 @@ class MultiQuantityField(models.Field):
 
         kwargs['dim'] = self.dim
         kwargs['units'] = map(str, self.units)
-        kwargs['max_length'] = 255
 
         return name, path, args, kwargs
 
