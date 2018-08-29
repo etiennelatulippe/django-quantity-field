@@ -51,12 +51,11 @@ class MultiQuantityField(models.Field):
         return 'CharField'
 
     def deconstruct(self):
-        name, path, args, kwargs = super(MultiQuantityField, self).deconstruct()
+        name, path, args, kwargs = super().deconstruct()
 
         kwargs['dim'] = self.dim
         kwargs['units'] = map(str, self.units)
-        # if 'max_length' in kwargs:
-        #     del kwargs['max_length']
+        del kwargs['max_length']
 
         return name, path, args, kwargs
 
@@ -118,4 +117,4 @@ class MultiQuantityField(models.Field):
         }
         defaults.update(kwargs)
 
-        return super(MultiQuantityField, self).formfield(**defaults)
+        return super().formfield(**defaults)
