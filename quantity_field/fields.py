@@ -55,7 +55,7 @@ class MultiQuantityField(models.Field):
 
         kwargs['dim'] = self.dim
         kwargs['units'] = map(str, self.units)
-        del kwargs['max_length']
+        kwargs['max_length'] = 255
 
         return name, path, args, kwargs
 
