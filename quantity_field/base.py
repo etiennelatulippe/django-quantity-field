@@ -75,10 +75,9 @@ class MultiQuantity(ureg.Quantity):
         Example:
             >>> mq = MultiQuantity.from_string('2.0*5.5*4.0 meter')
         """
-
-        packed_values = data.split(cls.SEPARATOR)
-        packed_values = packed_values[:-1] + packed_values[-1].split()
-        packed_values = [float(v) for v in packed_values[:-1]] + [packed_values[-1]]
+        parsed_quantity = Quantity(data)
+        unitless = data.replace(str(parsed_quantity.units), '')
+        packed_values = [float(v) for v in unitless.split(cls.SEPARATOR)] + [str(parsed_quantity.units)]
 
         return cls.from_list(*packed_values)
 
